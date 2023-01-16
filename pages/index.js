@@ -26,6 +26,12 @@ export default function Home({ property }) {
           }}
         />
         <div class={`${page === 0 ? "block" : "hidden"}`}>
+          {property?.map((p, idx) => (
+            <p className="text-white" key={idx}>
+              {p.username}
+            </p>
+          ))}{" "}
+          test
           <CtaHead onClickChange={pageHandler} />
         </div>
         <div class={`${page === 1 ? "block" : "hidden"}`}>
