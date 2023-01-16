@@ -6,6 +6,10 @@ import { useState } from "react";
 import { connectToDatabase } from "../util/mongodb";
 import MainAppPage from "./components/mainapppage.js";
 export default function Home({ property }) {
+  const pageHandler = () => {
+    event.preventDefault();
+    setPage(1);
+  };
   const [page, setPage] = useState(0);
   return (
     <>
@@ -22,11 +26,7 @@ export default function Home({ property }) {
           }}
         />
         <div class={`${page === 0 ? "block" : "hidden"}`}>
-          <CtaHead
-            onClickChange={() => {
-              setPage(1);
-            }}
-          />
+          <CtaHead onClickChange={pageHandler} />
         </div>
         <div class={`${page === 1 ? "block" : "hidden"}`}>
           <MainAppPage property={property} />
