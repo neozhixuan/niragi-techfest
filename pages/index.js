@@ -5,7 +5,15 @@ import CtaHead from "./components/cta.js";
 import { useState } from "react";
 import { connectToDatabase } from "../util/mongodb";
 import MainAppPage from "./components/mainapppage.js";
+import { useRouter } from "next/router";
+
 export default function Home({ property, feed }) {
+  const router = useRouter();
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -112,11 +120,7 @@ export default function Home({ property, feed }) {
           </div>
         </div>
         <div class={`${page === 1 ? "block" : "hidden"}`}>
-          <MainAppPage
-            property={property}
-            feed={feed}
-            changePage={() => setHolder(1)}
-          />
+          <MainAppPage property={property} feed={feed} refresh={refreshData} />
         </div>
       </main>
     </>
