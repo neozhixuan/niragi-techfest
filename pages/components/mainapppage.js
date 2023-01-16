@@ -2,9 +2,11 @@ const MainAppPage = (props) => {
   return (
     <div className="bg-gray-900 min-h-screen">
       <div>
-        {/* {props.property.map((p, idx) => (
-          <p key={idx}>{p.username}</p>
-        ))} */}
+        {props.property.map((p, idx) => (
+          <p className="text-white" key={idx}>
+            {p.username}
+          </p>
+        ))}
       </div>
       <div className="flex flex-col mx-[25%]">
         <label
