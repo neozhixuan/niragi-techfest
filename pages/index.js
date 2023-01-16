@@ -5,11 +5,11 @@ import CtaHead from "./components/cta.js";
 import { useState } from "react";
 import { connectToDatabase } from "../util/mongodb";
 import MainAppPage from "./components/mainapppage.js";
-export default function Home({ property }) {
+export default function Home({ property, feed }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
+  const [holder, setHolder] = useState();
   const handleSubmit = () => {
     event.preventDefault();
     for (var i = 0; i < property.length; i++) {
@@ -112,7 +112,11 @@ export default function Home({ property }) {
           </div>
         </div>
         <div class={`${page === 1 ? "block" : "hidden"}`}>
-          <MainAppPage property={property} />
+          <MainAppPage
+            property={property}
+            feed={feed}
+            changePage={() => setHolder(1)}
+          />
         </div>
       </main>
     </>
@@ -123,6 +127,9 @@ export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
   const data = await db.collection("carpark").find().toArray();
   const property = JSON.parse(JSON.stringify(data));
+
+  const data2 = await db.collection("feedback").find().toArray();
+  const feed = JSON.parse(JSON.stringify(data2));
   // const properties = data.map((property) => {
   //   return {
   //     username: property.username,
@@ -132,6 +139,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       property,
+      feed,
     },
   };
 }

@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const MainAppPage = ({ props, feed }) => {
+const MainAppPage = ({ property, feed, changePage }) => {
   const [area, setArea] = useState("");
   const [feedback, setFeedback] = useState("");
   const submitHandler = () => {
-    event.preventDefault();
     var arr = [area, feedback];
     recordFeedback(arr);
+    changePage;
   };
   var recordFeedback = async (array) => {
     const data = await fetch(
@@ -25,13 +25,15 @@ const MainAppPage = ({ props, feed }) => {
           </p>
         ))}
       </div> */}
-      <div className="w-[50%]">
-        {console.log(feed)}
-        {console.log("hello")}
+      <div className="w-[50%] pt-8 px-20">
         {feed?.map((x, idx) => (
-          <div key={idx}>
-            <p>{x.area}</p>
-            <p>{x.feedback}</p>
+          <div key={idx} className="rounded-lg border-white border-2 p-3 mb-3">
+            <p className="text-gray-400">
+              Area: <span className="text-white">{x.area}</span>
+            </p>
+            <p className="text-gray-400">
+              Feedback: <span className="text-white">{x.feedback}</span>
+            </p>
           </div>
         ))}
       </div>
@@ -81,22 +83,5 @@ const MainAppPage = ({ props, feed }) => {
     </div>
   );
 };
-
-export async function getServerSideProps(context) {
-  const { db } = await connectToDatabase();
-  const data = await db.collection("feedback").find().toArray();
-  const feed = JSON.parse(JSON.stringify(data));
-  // const properties = data.map((property) => {
-  //   return {
-  //     username: property.username,
-  //     password: property.password,
-  //   };
-  // });
-  return {
-    props: {
-      feed,
-    },
-  };
-}
 
 export default MainAppPage;
