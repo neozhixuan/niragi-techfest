@@ -2,7 +2,7 @@ const MainAppPage = (props) => {
   return (
     <div className="bg-gray-900 min-h-screen">
       <div>
-        {props.property.map((p, idx) => (
+        {props.property?.map((p, idx) => (
           <p className="text-white" key={idx}>
             {p.username}
           </p>
@@ -33,7 +33,7 @@ const MainAppPage = (props) => {
           for="message"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Your message
+          Describe the problem...
         </label>
         <textarea
           id="message"
