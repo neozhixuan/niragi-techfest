@@ -115,7 +115,7 @@ export default function Home({ property, feed }) {
                     </div>
                     <div class="text-center">
                       <a class="right-0 inline-block text-sm text-white font-bold align-baseline text-500 hover:text-gray-800">
-                        Create an account
+                        Request an account from HDB
                       </a>
                     </div>
                   </form>
