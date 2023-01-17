@@ -42,7 +42,7 @@ const MainAppPage = (props) => {
   };
   var recordFeedback = async (array) => {
     const data = await fetch(
-      `http://localhost:3000/api/feedback?area=${array[0]}&feedback=${array[1]}`
+      `https://niragi-techfest.vercel.app/api/feedback?area=${array[0]}&feedback=${array[1]}`
     );
     const res = await data.json();
     console.log(res);
