@@ -2,21 +2,30 @@ import { useState } from "react";
 
 const MainAppPage = (props) => {
   const [number, setNumber] = useState(5);
-  var number2 = number + 5;
   const [area, setArea] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [like, setLike] = useState(0);
+  const handleLike = () => {
+    if (like == 0) {
+      setLike(1);
+    } else {
+      setLike(0);
+    }
+  };
   const submitHandler = () => {
     event.preventDefault();
     var arr = [area, feedback];
     recordFeedback(arr);
     setArea("");
     setFeedback("");
-    props.refresh();
+    // props.refresh();
   };
+
   const thumbsUp = (area, feedback) => {
+    console.log("gay");
     var arr2 = [area, feedback];
     updateFeedback(arr2);
-    props.refresh();
+    // props.refresh();
   };
 
   const numberDec = () => {
@@ -52,9 +61,10 @@ const MainAppPage = (props) => {
           </p>
         ))}
       </div> */}
+
       <div className="w-[50%] pt-8 px-20">
         <button
-          class="bg-blue-500 px-2 rounded-lg text-white mb-3 mr-3"
+          class="ml-[40%] bg-blue-500 px-2 rounded-lg text-white mb-3 mr-3"
           onClick={numberDec}
           className="w-20"
         >
@@ -71,7 +81,9 @@ const MainAppPage = (props) => {
           idx < number || idx > number - 5 ? (
             <div
               key={idx}
-              className="rounded-lg border-white border-2 p-3 mb-3"
+              className={`${
+                idx % 2 == 0 ? "m-5" : "mr-5"
+              } w-[90%] rounded-lg border-white border-2 p-3 mb-3`}
             >
               <p className="text-gray-400">
                 Area: <span className="text-white">{x.area}</span>
@@ -79,15 +91,24 @@ const MainAppPage = (props) => {
               <p className="text-gray-400">
                 Feedback: <span className="text-white">{x.feedback}</span>
               </p>
-              <p className="text-gray-400">
+              {/* <p className="text-gray-400">
                 <span className="text-white">{x.thumb}</span>
-              </p>
-              <button
-                onClick={thumbsUp(x.area, x.feedback)}
-                className="text-white bg-green-700 rounded-lg px-1 mt-1"
-              >
-                Good
-              </button>
+              </p> */}
+              <img
+                key={idx}
+                onClick={handleLike}
+                className={`${
+                  like == 0 ? "hidden" : "block"
+                } text-white rounded-lg px-1 mt-1 w-10`}
+                src="/like.png"
+              />
+              <img
+                onClick={handleLike}
+                className={`${
+                  like == 0 ? "block" : "hidden"
+                } text-white rounded-lg px-1 mt-1 w-5 ml-1 mt-1`}
+                src="/likeblack.png"
+              />
             </div>
           ) : null
         )}

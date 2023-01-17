@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Header from "./components/header.js";
 import CtaHead from "./components/cta.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connectToDatabase } from "../util/mongodb";
 import MainAppPage from "./components/mainapppage.js";
 import { useRouter } from "next/router";
@@ -10,14 +10,10 @@ import { useRouter } from "next/router";
 export default function Home({ property, feed }) {
   const router = useRouter();
 
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
-
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [holder, setHolder] = useState();
+
   const handleSubmit = () => {
     event.preventDefault();
     for (var i = 0; i < property.length; i++) {
@@ -35,6 +31,15 @@ export default function Home({ property, feed }) {
     }
     console.log(property);
   };
+
+  useEffect(() => {
+    router.replace(router.asPath);
+  });
+  // const refreshData = () => {
+  //   console.log("Fuckkkkk");
+  //   () => router.replace(router.asPath);
+  // };
+
   // var record = async (array) => {
   //   const data = await fetch(
   //     `http://localhost:3000/api/users?name=${array[0]}&score=${array[1]}`
@@ -120,7 +125,7 @@ export default function Home({ property, feed }) {
           </div>
         </div>
         <div class={`${page === 1 ? "block" : "hidden"}`}>
-          <MainAppPage property={property} feed={feed} refresh={refreshData} />
+          <MainAppPage property={property} feed={feed} />
         </div>
       </main>
     </>
