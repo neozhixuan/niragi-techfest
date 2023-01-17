@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const MainAppPage = (props) => {
-  const [number, setNumber] = useState(5);
+  const [number, setNumber] = useState(4);
   const [area, setArea] = useState("");
   const [feedback, setFeedback] = useState("");
   const [like, setLike] = useState(0);
@@ -29,13 +29,16 @@ const MainAppPage = (props) => {
   };
 
   const numberDec = () => {
-    if (number > 5) {
-      setNumber(number - 5);
+    console.log(number);
+    if (number > 4) {
+      setNumber(number - 4);
     }
   };
   const numberInc = () => {
+    console.log(number);
+
     if (number < props.feed?.length) {
-      setNumber(number + 5);
+      setNumber(number + 4);
     }
   };
   var recordFeedback = async (array) => {
@@ -62,7 +65,7 @@ const MainAppPage = (props) => {
         ))}
       </div> */}
 
-      <div className="w-[50%] pt-8 px-20">
+      <div className="w-[50%] px-20">
         <button
           class="ml-[40%] bg-blue-500 px-2 rounded-lg text-white mb-3 mr-3"
           onClick={numberDec}
@@ -78,7 +81,7 @@ const MainAppPage = (props) => {
           &gt;
         </button>
         {props.feed?.map((x, idx) =>
-          idx < number || idx > number - 5 ? (
+          idx < number && idx > number - 5 ? (
             <div
               key={idx}
               className={`${
@@ -95,7 +98,6 @@ const MainAppPage = (props) => {
                 <span className="text-white">{x.thumb}</span>
               </p> */}
               <img
-                key={idx}
                 onClick={handleLike}
                 className={`${
                   like == 0 ? "hidden" : "block"
