@@ -79,7 +79,7 @@ export default function Home({ property, feed }) {
                     onSubmit={handleSubmit}
                   >
                     <p class="mb-8 text-2xl font-light text-center text-white">
-                      Access the portal - just click login
+                      Access the portal - username abc, password 123
                     </p>
                     <div class="mb-2">
                       <div class=" relative ">
