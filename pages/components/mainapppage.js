@@ -165,7 +165,13 @@ const MainAppPage = (props) => {
         )}
       </div>
       <form className="w-[100%] md:w-[50%]">
-        {" "}
+        <p class="text-white mb-4 text-sm mr-[25%] md:block hidden">
+          Welcome to <span className="text-red-800">Niragi</span>, an
+          application built in collaboration with HDB to aggregate peoples
+          sentiments on Singapore's carparks, anonymously. Enter the area you
+          are in, along with the feedback you have for the specific place - this
+          will reach HDB officials who will be checking in regularly!
+        </p>{" "}
         <div className="flex flex-col ml-[25%] md:ml-[0%] mr-[25%]">
           <label
             for="first_name"
